@@ -41,6 +41,34 @@ class JokeViewModel: NSObject {
         
     }
     
+
+    func toDictionary() -> NSDictionary
+    {
+        let dictionary = NSMutableDictionary()
+        
+        if let nswf = self.joke?.flags.nsfw {
+            dictionary["nsfw"] = nswf
+        }
+        if let religious = self.joke?.flags.religious {
+            dictionary["religious"] = religious
+        }
+        if let political = self.joke?.flags.political {
+            dictionary["political"] = political
+        }
+        if let racist = self.joke?.flags.racist {
+            dictionary["racist"] = racist
+        }
+        if let sexist = self.joke?.flags.sexist {
+            dictionary["sexist"] = sexist
+        }
+        if let explicit = self.joke?.flags.explicit {
+            dictionary["explicit"] = explicit
+        }
+    
+        return dictionary
+    }
+    
+  
     private func parseJoke() {
         
         if self.joke?.type == "twopart" {

@@ -11,6 +11,7 @@ import Alamofire
 // MARK: - Struct
 
 struct JokeModel: Codable {
+    
     var error: Bool
     var category, type: String
     var setup, delivery, joke: String?
