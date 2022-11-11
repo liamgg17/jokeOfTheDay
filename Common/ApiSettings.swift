@@ -9,7 +9,8 @@ import Foundation
 
 struct ApiSettings {
     
-      // MARK: Properties
+    
+    // MARK: Properties
     
     static let ApiBaseUrl: String = "https://v2.jokeapi.dev/joke/Any"
  

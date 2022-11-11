@@ -10,7 +10,7 @@ import Alamofire
 
 // MARK: - Struct
 
-struct Joke: Codable {
+struct JokeModel: Codable {
     var error: Bool
     var category, type: String
     var setup, delivery, joke: String?
@@ -52,7 +52,7 @@ extension DataRequest {
     }
     
     @discardableResult
-    func responseMovie(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<Joke>) -> Void) -> Self {
+    func responseJoke(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<JokeModel>) -> Void) -> Self {
         return responseDecodable(queue: queue, completionHandler: completionHandler)
     }
 }
