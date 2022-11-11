@@ -36,12 +36,35 @@ class JokeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.showLoader()
-        model.updateJoke()
+        self.updateJoke()
+        
       
     }
     
     // MARK: - Functions
+    
+    func updateJoke(){
+        
+        if model.shouldGetJoke {
+            
+            self.showLoader()
+            model.updateJoke(completion: { (success) in
+                
+                if let success = success, !success {
+                
+                    self.hideLoader()
+                    self.alertMessage(message: NetworkManager.error(.internalError).localizedDescription)
+                    
+                }
+                
+                
+            })
+            
+        } else {
+            self.alertMessage(message: NetworkManager.error(.networkError).localizedDescription)
+        }
+        
+    }
     
     func setData() {
         
@@ -53,8 +76,9 @@ class JokeViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func btnRefreshAction(_ sender: Any) {
-        self.showLoader()
-        model.updateJoke()
+        
+        self.updateJoke()
+    
         
     }
     

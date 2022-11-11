@@ -21,30 +21,31 @@ class JokeViewModel: NSObject {
     
     private var jokeRemoteManager = JokeRemoteDataManager()
     
-    func updateJoke() {
-        
-        if shouldGetJoke {
+    
+    func updateJoke(completion: @escaping (_ success:Bool?) -> ()) {
+       
+        jokeRemoteManager.fetchJoke(completion: { (jokeResult, error) in
             
-           
-            jokeRemoteManager.fetchJoke(completion: { (jokeResult, error) in
+            if let error = error {
+                print(error)
+                completion(false)
                 
-                if let error = error {
-                    print(error)
-                    
-                } else {
-                    if let jokeResult = jokeResult {
-                        
-                        self.joke = jokeResult
-                        self.parseJoke()
-                        
-                    }
+            } else {
+                if let jokeResult = jokeResult {
+                
+                    self.joke = jokeResult
+                    self.parseJoke()
+                    completion(true)
                 }
-            })
-        }
+            }
+        })
+        
         
     }
     
-    private var shouldGetJoke: Bool {
+
+    
+    var shouldGetJoke: Bool {
        
         let isConnectedToInternet: Bool = NetworkManager.isConnectedToInternet
         return isConnectedToInternet
