@@ -14,6 +14,8 @@ protocol JokeViewModelProtocol {
 
 class JokeViewModel: NSObject {
     
+    
+    
     var delegate: JokeViewModelProtocol?
     
     fileprivate(set) var joke: JokeModel?
@@ -40,7 +42,6 @@ class JokeViewModel: NSObject {
     }
     
     private func parseJoke() {
-        
         
         if self.joke?.type == "twopart" {
             
