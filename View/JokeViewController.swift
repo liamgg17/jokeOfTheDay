@@ -43,6 +43,13 @@ class JokeViewController: UIViewController {
     
     // MARK: - Functions
     
+    /**
+     That function is responsible for communicating with the ViewModel to request the object
+        :params:
+        :returns:
+        
+    */
+    
     func updateJoke(){
         
         if model.shouldGetJoke {
@@ -51,13 +58,11 @@ class JokeViewController: UIViewController {
             model.updateJoke(completion: { (success) in
                 
                 if let success = success, !success {
-                
+                    
                     self.hideLoader()
                     self.alertMessage(message: NetworkManager.error(.internalError).localizedDescription)
                     
                 }
-                
-                
             })
             
         } else {
@@ -87,6 +92,14 @@ class JokeViewController: UIViewController {
 }
 extension JokeViewController: JokeViewModelProtocol {
    
+    /**
+     Function that is called from the JokeViewModelProtocoll to get the JokeViewModel object
+        :params:
+        :returns:
+        
+    */
+    
+    
     func didUpdateJoke() {
         self.hideLoader()
         self.setData()

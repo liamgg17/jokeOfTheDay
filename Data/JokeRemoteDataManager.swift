@@ -12,7 +12,7 @@ struct JokeRemoteDataManager {
     
     
     /**
-     Function that is responsible for making the request to the Server to obtain the Joke to show
+     That function is responsible for making the request to the Server to obtain the Joke to show
         :params:
         :returns: success JSON object with the information
         

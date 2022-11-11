@@ -43,7 +43,11 @@ class JokeViewModel: NSObject {
         
     }
     
-
+    /**
+     That property is responsible of verifying if there is an internet connection
+        :returns: True or False depending on whether there is a connection or not
+        
+    */
     
     var shouldGetJoke: Bool {
        
@@ -51,6 +55,11 @@ class JokeViewModel: NSObject {
         return isConnectedToInternet
     }
     
+    /**
+     That function is responsible to cast the Joke Struct to NSDictionary
+        :returns: True or False depending on whether there is a connection or not
+        
+    */
 
     func toDictionary() -> NSDictionary
     {
@@ -89,8 +98,8 @@ class JokeViewModel: NSObject {
             }
             
         }
+         
         self.delegate?.didUpdateJoke()
-      
         
     }
     

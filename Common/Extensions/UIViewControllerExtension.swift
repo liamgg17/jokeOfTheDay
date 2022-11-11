@@ -30,6 +30,7 @@ class UIViewControllerExtension: UIViewController {
 extension UIViewController {
     
     
+    
     func showLoader(optSize: CGSize? = nil, optType: NVActivityIndicatorType? = nil, optColor: UIColor? = nil){
         let actData = ActivityData(
             size: (optSize ?? CGSize(width: 80, height: 80)),
@@ -50,6 +51,7 @@ extension UIViewController {
     func hideLoader(){
         NVActivityIndicatorPresenter.sharedInstance.stopAnimating(nil)
     }
+    
     
     func alertMessage(message: String, dismiss: Bool = true, completion: (()->())? = nil){
       
