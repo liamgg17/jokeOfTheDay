@@ -46,7 +46,7 @@ class JokeViewModel: NSObject {
         if self.joke?.type == "twopart" {
             
             if let setup = self.joke?.setup, let delivery = self.joke?.delivery {
-                self.joke?.joke = "\(setup) \n \n \(delivery)"
+                self.joke?.joke = "\(setup)\n\n\(delivery)"
                 
             }
             
