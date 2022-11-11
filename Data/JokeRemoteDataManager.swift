@@ -23,6 +23,7 @@ struct JokeRemoteDataManager {
            
         Alamofire.request(ApiSettings.ApiBaseUrl).responseJoke { response in
             if let error = response.error {
+                print(NetworkManager.error(.internalError))
                 completion(nil, error)
                 return
             }

@@ -17,28 +17,37 @@ class JokeViewModel: NSObject {
     
     
     var delegate: JokeViewModelProtocol?
-    
     fileprivate(set) var joke: JokeModel?
     
     private var jokeRemoteManager = JokeRemoteDataManager()
     
     func updateJoke() {
         
-        jokeRemoteManager.fetchJoke(completion: { (jokeResult, error) in
+        if shouldGetJoke {
             
-            if let error = error {
-                print(error)
+           
+            jokeRemoteManager.fetchJoke(completion: { (jokeResult, error) in
                 
-            } else {
-                if let jokeResult = jokeResult {
+                if let error = error {
+                    print(error)
                     
-                    self.joke = jokeResult
-                    self.parseJoke()
-                   
+                } else {
+                    if let jokeResult = jokeResult {
+                        
+                        self.joke = jokeResult
+                        self.parseJoke()
+                        
+                    }
                 }
-            }
-        })
+            })
+        }
         
+    }
+    
+    private var shouldGetJoke: Bool {
+       
+        let isConnectedToInternet: Bool = NetworkManager.isConnectedToInternet
+        return isConnectedToInternet
     }
     
 

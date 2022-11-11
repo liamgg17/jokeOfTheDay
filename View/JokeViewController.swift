@@ -12,7 +12,7 @@ class JokeViewController: UIViewController {
     // MARK: - Properties
     
     fileprivate let model = JokeViewModel()
-    
+   
     var flagsArray : NSDictionary? {
         didSet {
             self.collectionViewFlags.reloadData()
@@ -31,11 +31,12 @@ class JokeViewController: UIViewController {
         model.delegate = self
         collectionViewFlags.dataSource = self
         collectionViewFlags.delegate = self
-       
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.showLoader()
         model.updateJoke()
       
     }
@@ -52,7 +53,7 @@ class JokeViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func btnRefreshAction(_ sender: Any) {
-        
+        self.showLoader()
         model.updateJoke()
         
     }
@@ -63,6 +64,7 @@ class JokeViewController: UIViewController {
 extension JokeViewController: JokeViewModelProtocol {
    
     func didUpdateJoke() {
+        self.hideLoader()
         self.setData()
     }
 }
