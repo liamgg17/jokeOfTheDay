@@ -13,20 +13,38 @@ import Alamofire
 struct JokeModel: Codable {
     
     var error: Bool
-    var category, type: String
-    var setup, delivery, joke: String?
+    var category: String
+    var type: String
+    var setup: String?
+    var delivery: String?
+    var joke: String?
     let flags: Flags
     var id: Int
     var safe: Bool
     var lang: String
+    
 }
 
 // MARK: - Flags
 
 struct Flags: Codable {
     
-    let nsfw, religious, political, racist: Bool
-    let sexist, explicit: Bool
+    let nsfw: Bool
+    let political: Bool
+    let racist: Bool
+    let religious: Bool
+    let sexist: Bool
+    let explicit: Bool
+    
+    var asDictionary : [String:Any] {
+       let mirror = Mirror(reflecting: self)
+       let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?, value:Any) -> (String, Any)? in
+         guard let label = label else { return nil }
+         return (label, value)
+       }).compactMap { $0 })
+       return dict
+     }
+    
 }
 
 
