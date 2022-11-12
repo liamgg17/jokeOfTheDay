@@ -74,7 +74,7 @@ class JokeViewController: UIViewController {
     func setData() {
         
         self.lblJoke.text = model.joke?.joke
-        self.flagsArray = model.toDictionary()
+        self.flagsArray = model.joke?.flags.asDictionary as NSDictionary?
       
     }
 
@@ -123,11 +123,14 @@ extension JokeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "jokeFlagsCollectionViewCell", for: indexPath as IndexPath) as! JokeFlagsCollectionViewCell
        
-        let allKeys = self.flagsArray?.allKeys
-        let allValues = self.flagsArray?.allValues
-        let flag = allKeys![indexPath.row] as! String
-        let value = allValues![indexPath.row] as! Bool
-        cell.setData(key: flag, value: value)
+        if let allKeys = self.flagsArray?.allKeys,let allValues = self.flagsArray?.allValues {
+            
+            let flag = allKeys[indexPath.row] as! String
+            let value = allValues[indexPath.row] as! Bool
+        
+            cell.setData(key: flag, value: value)
+        }
+       
         
 
         return cell
